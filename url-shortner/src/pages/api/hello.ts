@@ -22,10 +22,10 @@ export default async function handler(
       res.status(200).json({name : url_short});
       break;
     case "GET" :
-      const filter = { "short_url": req.body };
-      const allPosts = await db.collection("url").find({}).toArray();
-      res.json(allPosts);
-      //res.redirect(allPosts[0]);
+      console.log("inside GET "+req.query.surl);
+      const filter = { "short_url": req.query.surl };
+      const allPosts = await db.collection("url").find(filter).toArray();
+      res.status(200).json({name : allPosts[0]});
       break;
   }
 }
