@@ -24,7 +24,7 @@ router.get('/longUrl', async (req, res) => {
             res.json({name : "no data found"}) 
         }
     }).catch(err => {
-        console.error('An error occurred:', error);
+        console.error('An error occurred:', err);
     res.status(500).json({ error: 'An internal server error occurred' });
     })
 })
