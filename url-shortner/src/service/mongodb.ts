@@ -1,21 +1,36 @@
-// mongodb.ts
+import mongoose, { Schema, Model } from 'mongoose';
 
-import { MongoClient, MongoClientOptions } from 'mongodb';
+let cachedConnection: mongoose.Connection | null = null;
 
-const uri: string | undefined = 'mongodb+srv://ronneyjadhav1:root@firstcuster.cjsmzkd.mongodb.net/?retryWrites=true&w=majority&appName=firstCuster';
-const options: MongoClientOptions = {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-};
+export async function connectToDatabase() {
+  if (cachedConnection) {
+    return cachedConnection;
+  }
 
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
+  const uri : string = 'mongodb+srv://ronneyjadhav1:root@firstcuster.cjsmzkd.mongodb.net/?retryWrites=true&w=majority&appName=firstCuster';
 
-if (!uri) {
-  throw new Error('Add Mongo URI to .env.local');
+  const options = {
+    dbName: "url_shortner"
+  };
+
+  const connection = await mongoose.connect(uri, options);
+  cachedConnection = connection.connection;
+  return cachedConnection;
 }
 
-  client = new MongoClient(uri, options);
-  clientPromise = client.connect();
+export function getDatabaseConnection() {
+  if (!cachedConnection) {
+    throw new Error('Database connection has not been established.');
+  }
+  return cachedConnection;
+}
 
-export default clientPromise;
+// Define the Mongoose schema
+const urlSchema = new Schema({
+  short_url: String,
+  long_url: String,
+});
+
+// Define the Mongoose model
+export const Url: Model<any> = mongoose.models.Url || mongoose.model('Url', urlSchema);
+

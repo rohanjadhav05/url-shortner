@@ -95,10 +95,10 @@ export default function Home() {
               });
               if (response.ok) {
                 const jsonData = await response.json();
-                if(typeof jsonData.name === 'undefined'){
+                if(jsonData.name == 'no data found'){
                   alert("This URl is not shortened Earlier, Please add Already shortened Url");
                 }else{
-                  setLongUrl(jsonData.name.long_url);
+                  setLongUrl(jsonData.name);
                   setIsLong(true);
                 }
               } else {

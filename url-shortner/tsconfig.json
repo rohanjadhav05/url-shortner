@@ -14,7 +14,9 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/service/mongodb.ts"],
   "exclude": ["node_modules"]
