@@ -6,7 +6,7 @@ import { useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-
+  const BASE_URL = "http://localhost:3000/api/"
   const [url, setUrl] = useState('');
   const [surl, setSUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
@@ -44,12 +44,13 @@ export default function Home() {
           }
           else{
             try {
-              const response = await fetch('/api/hello', {
+              const data = {url : url}
+              const response = await fetch(BASE_URL+"shortUrl", {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(url),
+                body: JSON.stringify(data),
               });
               if (response.ok) {
                 const jsonData = await response.json();
