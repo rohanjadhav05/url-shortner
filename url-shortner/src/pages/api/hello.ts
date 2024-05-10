@@ -10,6 +10,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
+  console.log('Entered the serverless function')
   const db = await connectToDatabase();
   switch(req.method){
    case "POST" :
@@ -17,7 +18,9 @@ export default async function handler(
       const uuid = Math.random().toString(32).slice(5);
       const url_short = `http://rohanDev.com/${uuid}`
       const newUrl = new Url({ short_url: url_short , long_url: url})
+      console.log("trying to save to database");
       newUrl.save();
+      console.log("saved");
       console.log(newUrl);
       res.status(200).json({name : url_short});
       break;

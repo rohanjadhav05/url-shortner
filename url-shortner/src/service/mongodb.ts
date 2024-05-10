@@ -6,15 +6,13 @@ export async function connectToDatabase() {
   if (cachedConnection) {
     return cachedConnection;
   }
-
   const uri : string = 'mongodb+srv://ronneyjadhav1:root@firstcuster.cjsmzkd.mongodb.net/?retryWrites=true&w=majority&appName=firstCuster';
-
   const options = {
     dbName: "url_shortner"
   };
-
   const connection = await mongoose.connect(uri, options);
   cachedConnection = connection.connection;
+  console.log("database connected");
   return cachedConnection;
 }
 
