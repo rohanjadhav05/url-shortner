@@ -11,6 +11,7 @@ export default async function handler(
   res: NextApiResponse<Data>,
 ) {
   console.log('Entered the serverless function')
+  return res.status(200).json({name : "Ok"});
   const db = await connectToDatabase();
   switch(req.method){
    case "POST" :
