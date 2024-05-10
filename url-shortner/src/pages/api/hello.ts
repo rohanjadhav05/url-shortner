@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import  { Url, getDatabaseConnection, connectToDatabase } from  "@/service/mongodb";
-
+export const maxDuration = 25;
 type Data = {
   name: string;
 };
@@ -10,8 +10,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
-  console.log('Entered the serverless function')
-  return res.status(200).json({name : "Ok"});
   const db = await connectToDatabase();
   switch(req.method){
    case "POST" :
