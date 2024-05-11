@@ -6,7 +6,7 @@ import { useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const BASE_URL = "http://localhost:3000/api/"
+  const BASE_URL = "http://13.60.37.72:3000/api/"
   const [url, setUrl] = useState('');
   const [surl, setSUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
@@ -88,7 +88,7 @@ export default function Home() {
         }else{
             try {
               console.log("buttonClick");
-              const response = await fetch(`/api/hello?surl=${surl}`, {
+              const response = await fetch(BASE_URL+`longUrl?surl=${surl}`, {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
