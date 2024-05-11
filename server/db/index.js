@@ -9,7 +9,7 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
-  socketPath: '/var/run/mysqld/mysqld.sock'
+  port: '3306'
 });
 
 module.exports = pool;
