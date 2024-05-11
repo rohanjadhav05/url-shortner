@@ -8,7 +8,8 @@ const pool = mysql.createPool({
   database: 'url_shortner',
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
+  socketPath: '/var/run/mysqld/mysqld.sock'
 });
 
 module.exports = pool;
