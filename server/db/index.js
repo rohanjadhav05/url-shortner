@@ -1,15 +1,14 @@
-const mongoose = require("mongoose");
-// Define mongoose schemas
 
-  
-const urlSchema = new mongoose.Schema({
-    short_url : String,
-    long_url : String,
+const mysql = require('mysql2/promise');
+
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: 'Pramila@511',
+  database: 'url_shortner',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-
-const Url = mongoose.model('Url', urlSchema);
-  
-module.exports = {
-    Url
-}
+module.exports = pool;
