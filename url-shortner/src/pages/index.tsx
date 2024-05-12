@@ -6,7 +6,7 @@ import { useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const BASE_URL = "http://13.60.37.72:3000/api/"
+  const BASE_URL = "http://13.60.37.72:5134/api/"
   const [url, setUrl] = useState('');
   const [surl, setSUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
