@@ -12,7 +12,7 @@ app.use("/api", router);
 app.get('/:uuid', async (req, res) => {
     try {
         const uuid = req.params.uuid;
-        const shortUrl = `http://13.60.37.72:3000/${uuid}`;
+        const shortUrl = `http://13.60.37.72:5134/${uuid}`;
         const longUrl = await getLongUrl(shortUrl);
         console.log("Long Url : " + longUrl);
         res.redirect(longUrl);
