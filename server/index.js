@@ -8,12 +8,12 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", router);
-const port = 3000;
+const port = 3010;
 
 app.get('/:uuid', async (req, res) => {
     try {
         const uuid = req.params.uuid;
-        const shortUrl = `http://13.60.38.57:3000/${uuid}`;
+        const shortUrl = `http://13.60.38.57:3010/${uuid}`;
         const longUrl = await getLongUrl(shortUrl);
         console.log("Long Url : " + longUrl);
         res.redirect(longUrl);
