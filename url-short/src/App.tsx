@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 function App() {
   
-  const BASE_URL = "http://13.60.37.72:5134/api/"
+  const BASE_URL = "http://13.60.38.57:3000/api/"
   const [url, setUrl] = useState('');
   const [surl, setSUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');

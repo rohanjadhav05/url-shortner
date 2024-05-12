@@ -6,13 +6,13 @@ const router = express.Router();
 router.post('/shortUrl', (req, res) => {
     const url = req.body.url;
     const uuid = Math.random().toString(32).slice(5);
-    const url_short = `http://13.60.37.72:5134/${uuid}`
+    const url_short = `http://13.60.38.57:3000/${uuid}`
     const sql = `INSERT INTO url (url_long, url_short) VALUES (?, ?)`;
     pool.query(sql, [url, url_short]).then((response) => {
         console.log("connection created : "+response);
         res.status(200).json({name : url_short});
     }).catch((err) => {
-        res.status(500).json({name : "internal server Error"});
+        res.status(500).json({name : "internal server Error : "+err});
     });
 });
   
