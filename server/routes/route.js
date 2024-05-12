@@ -18,14 +18,14 @@ router.post('/shortUrl', (req, res) => {
   
 router.get('/longUrl', async (req, res) => {    
     const shortUrl = req.query.surl;
-    getLongUrl(shortUrl).then(longUrl => {
+    const longUrl = await getLongUrl(shortUrl);
+    if(longUrl == 'no data found'){
+        console.log("in no data found");
+        res.status(200).json({name : "no data found"})
+    }else{
         console.log('Long URL:', longUrl);
         res.status(200).json({name : longUrl })
-    })
-    .catch(error => {
-        console.error('Error:', error.message);
-        res.status(500).json({name : "internal server Error : "+error.message});
-    });
+    }
 })
 
 
@@ -34,11 +34,11 @@ async function getLongUrl(shortUrl) {
         const connection = await pool.getConnection();
         const sql = 'SELECT url_long FROM url WHERE url_short = ?';
         const [rows, fields] = await connection.execute(sql, [shortUrl]);
-        console.log("row : "+JSON.stringify(rows,2)+" : "+rows[0].url_long);
+        console.log("row : "+JSON.stringify(rows,2));
         if (rows.length > 0) {
             return rows[0].url_long;
         } else {
-            throw new Error('Short URL not found');
+            return "no data found";
         }
     } catch (error) {
       throw error;

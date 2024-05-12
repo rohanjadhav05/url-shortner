@@ -10,6 +10,17 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
   port: '3306'
+  /* 
+  host: 'localhost',
+  user: 'root',
+  password: 'Pramila@511',
+  database: 'url_shortner',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  port: '3306'
+  */
+
 });
 
 module.exports = pool;
