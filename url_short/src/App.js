@@ -76,45 +76,71 @@ function App() {
     }
   };
 
-  return (
-    <div style={{ display: 'flex',  justifyContent:"center",  alignItems: 'center', flexDirection: 'column', minHeight: '100vh',}}>
+  return  (
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6">URL Shortener Project</Typography>
         </Toolbar>
       </AppBar>
-          <Typography variant="h4" align="center" gutterBottom style={{paddingTop:50}}>
-            Welcome to our URL Shortener
-          </Typography>
-          <div style={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{ display: 'flex', justifyContent: 'center'}}>
-          <Container maxWidth="md">
-            <div style={{ flex: 1 }}>
-              <TextField id="standard-basic" size="medium" fullWidth label="Enter a Long URL" variant="outlined" style={{ margin: 20 }}
-                value={url} onChange={(e) => setUrl(e.target.value)} />
-              <Button variant="contained" color="primary" fullWidth style={{ margin: 20 }} onClick={handleShortenUrl}>
-                Shorten URL
-              </Button>
-              {isShort && <Typography variant="h6" align="center" style={{ paddingTop: 20 }}>
-                Shortened URL: {shortUrl}
-              </Typography>}
-            </div>
-            </Container>
-            <Container maxWidth="md">
-            <div style={{ flex: 1  }}>
-              <TextField id="standard-basic" size="medium" fullWidth label="Enter a Short URL" variant="outlined" style={{ margin: 20 }}
-                value={surl} onChange={(e) => setSUrl(e.target.value)} />
-              <Button variant="contained" color="primary" fullWidth style={{ margin: 20 }} onClick={handleGetOriginalUrl}>
-                Get Original URL
-              </Button>
-              {isLong && <Typography variant="h6" align="center" style={{ paddingTop: 20 }}>
-                Original URL: {longUrl}
-              </Typography>}
-            </div>
-            </Container>
+      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+        <Typography variant="h4" align="center" gutterBottom style={{ paddingTop: 50 }}>
+          Welcome to our URL Shortener
+        </Typography>
+        <Container maxWidth="md">
+          <div>
+            <TextField
+              id="standard-basic"
+              size="medium"
+              fullWidth
+              label="Enter a Long URL"
+              variant="outlined"
+              style={{ margin: '20px 0' }}
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              style={{ margin: '0 0 20px 0' }}
+              onClick={handleShortenUrl}
+            >
+              Shorten URL
+            </Button>
+            {isShort && <Typography variant="h6" align="center" style={{ paddingTop: 20 }}>
+              Shortened URL: {shortUrl}
+            </Typography>}
           </div>
-        </div>
-      <footer style={{ textAlign: 'center', padding: '10px 0', backgroundColor: '#f0f0f0' }}>
+        </Container>
+        <Container maxWidth="md">
+          <div>
+            <TextField
+              id="standard-basic"
+              size="medium"
+              fullWidth
+              label="Enter a Short URL"
+              variant="outlined"
+              style={{ margin: '20px 0' }}
+              value={surl}
+              onChange={(e) => setSUrl(e.target.value)}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              style={{ margin: '0 0 20px 0' }}
+              onClick={handleGetOriginalUrl}
+            >
+              Original URL
+            </Button>
+            {isLong && <Typography variant="h6" align="center" style={{ paddingTop: 20 }}>
+              Original URL: {longUrl}
+            </Typography>}
+          </div>
+        </Container>
+      </div>
+      <footer style={{ textAlign: 'center', padding: '10px 0', backgroundColor: '#f0f0f0', width: '100%' }}>
         <Typography variant="body2" color="textSecondary">
           Follow us on{' '}
           <a href="https://www.linkedin.com/in/rohan-jadhav-0511s/">LinkedIn</a>, {' '}
