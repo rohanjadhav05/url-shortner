@@ -3,7 +3,7 @@ import { AppBar, Button, Container, TextField, Toolbar, Typography } from '@mui/
 import './App.css';
 
 function App() {
-  const BASE_URL = "http://13.60.38.57:3010/api/"
+  const BASE_URL = "http://3.109.108.180:3010/api/"
   const [url, setUrl] = useState('');
   const [surl, setSUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
@@ -89,7 +89,7 @@ function App() {
           <div style={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <div style={{ display: 'flex', justifyContent: 'center'}}>
           <Container maxWidth="md">
-            <div style={{ flex: 1, margin: 50 }}>
+            <div style={{ flex: 1 }}>
               <TextField id="standard-basic" size="medium" fullWidth label="Enter a Long URL" variant="outlined" style={{ margin: 20 }}
                 value={url} onChange={(e) => setUrl(e.target.value)} />
               <Button variant="contained" color="primary" fullWidth style={{ margin: 20 }} onClick={handleShortenUrl}>
@@ -101,7 +101,7 @@ function App() {
             </div>
             </Container>
             <Container maxWidth="md">
-            <div style={{ flex: 1, margin: 50  }}>
+            <div style={{ flex: 1  }}>
               <TextField id="standard-basic" size="medium" fullWidth label="Enter a Short URL" variant="outlined" style={{ margin: 20 }}
                 value={surl} onChange={(e) => setSUrl(e.target.value)} />
               <Button variant="contained" color="primary" fullWidth style={{ margin: 20 }} onClick={handleGetOriginalUrl}>
