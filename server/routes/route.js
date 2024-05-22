@@ -5,7 +5,10 @@ const router = express.Router();
 
 router.post('/shortUrl', (req, res) => {
     const url = req.body.url;
-    const uuid = Math.random().toString(32).slice(5);
+    const length = req.body.length;
+    console.log(length);
+    const uuid = Math.random().toString(32).slice(-length);
+    console.log(uuid);
     const url_short = `http://3.109.108.180:3010/${uuid}`
     const sql = `INSERT INTO url (url_long, url_short) VALUES (?, ?)`;
     pool.query(sql, [url, url_short]).then((response) => {
@@ -28,7 +31,21 @@ router.get('/longUrl', async (req, res) => {
     }
 })
 
-
+router.get("/100Req", async(req,res) => {
+    for(var i = 0; i < 100; i++){
+        const uuid1 = Math.random().toString(32).slice(-20);
+        const uuid2 = Math.random().toString(32).slice(-5);
+        const longUrl = `http:/rohandev.com/${uuid1}`;
+        const shortUrl = `http:/shortUrl.com/${uuid2}`;
+        const sql = `INSERT INTO url (url_long, url_short) VALUES (?, ?)`;
+        var count = 0;
+        pool.query(sql, [longUrl, shortUrl]).then((response) => {
+            console.log("createed : "+count++);
+        }).catch((err) => {
+            console.log("falied");
+        });
+    }
+})
 async function getLongUrl(shortUrl) {
     try {
         const connection = await pool.getConnection();

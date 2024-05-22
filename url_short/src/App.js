@@ -3,19 +3,21 @@ import { AppBar, Button, Container, TextField, Toolbar, Typography } from '@mui/
 import './App.css';
 
 function App() {
-  const BASE_URL = "http://3.109.108.180:3010/api/"
+  const BASE_URL = "http://localhost:3010/api/"
   const [url, setUrl] = useState('');
   const [surl, setSUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [isLong, setIsLong] = useState(false);
   const [isShort, setIsShort] = useState(false);
   const [longUrl, setLongUrl] = useState('');
+  const [length, setLength] = useState(0);
 
   function isValidUrl(url) {
-    try {
-      new URL(url);
-      return true;
-    } catch (error) {
+    if(/^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g.test(url)) {
+      console.log("Validated"); 
+    return true;
+    }
+    else{
       return false;
     }
   }
@@ -25,9 +27,12 @@ function App() {
       alert('Please enter a URL before submitting.');
     } else if (!isValidUrl(url)) {
       alert('Please enter a valid URL.');
-    } else {
+    }else if(length === 0){
+      alert("please enter the value of length of URL");
+    } 
+    else {
       try {
-        const data = { url: url };
+        const data = { url: url, length:length };
         const response = await fetch(BASE_URL + 'shortUrl', {
           method: 'POST',
           headers: {
@@ -89,6 +94,16 @@ function App() {
         </Typography>
         <Container maxWidth="md">
           <div>
+            <TextField
+              id="standard-basic"
+              size="medium"
+              fullWidth
+              label="Enter the length of URl"
+              variant="outlined"
+              style={{ margin: '20px 0' }}
+              value={length}
+              onChange={(e) => setLength(e.target.value)}
+            />
             <TextField
               id="standard-basic"
               size="medium"
