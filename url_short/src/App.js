@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { AppBar, Button, Container, TextField, Toolbar, Typography } from '@mui/material';
-import './App.css';
 
 function App() {
   const BASE_URL = "http://localhost:3010/api/"
