@@ -14,7 +14,7 @@ const port = 3010;
 app.get('/:uuid', async (req, res) => {
     try {
         const uuid = req.params.uuid;
-        const shortUrl = `http://3.109.108.180:3010/${uuid}`;
+        const shortUrl = `http://localhost:3010/${uuid}`;
         const longUrl = await getLongUrl(shortUrl);
         console.log("Long Url : " + longUrl);
         res.redirect(longUrl);
